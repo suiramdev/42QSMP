@@ -11,12 +11,14 @@
     "db:push": "turbo run db:push",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "devDependencies": {
+  "dependencies": {
     "@turbo/gen": "^1.9.7",
+    "turbo": "latest"
+  },
+  "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
-    "prettier": "^2.5.1",
-    "turbo": "latest"
+    "prettier": "^2.5.1"
   },
   "packageManager": "pnpm@7.15.0"
 }
