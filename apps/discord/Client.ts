@@ -31,22 +31,30 @@ class Client extends DiscordClient {
   }
 
   private loadEvents(dir: string): void {
-    findFiles(path.resolve(__dirname, dir), (file: string) => file.endsWith(".ts")).forEach(async (file: string) => {
-      if (file.split(path.sep).includes("dev") && env.NODE_ENV !== "development") return;
-      const { event } = await import(file);
+    try {
+      findFiles(path.resolve(__dirname, dir), (file: string) => file.endsWith(".ts")).forEach(async (file: string) => {
+        if (file.split(path.sep).includes("dev") && env.NODE_ENV !== "development") return;
+        const { event } = await import(file);
 
-      this.on(event.name, event.callback.bind(null, this));
-    });
+        this.on(event.name, event.callback.bind(null, this));
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   private loadCommands(dir: string): void {
-    findFiles(path.resolve(__dirname, dir), (file: string) => file.endsWith(".ts")).forEach(async (file: string) => {
-      if (file.split(path.sep).includes("dev") && env.NODE_ENV !== "development") return;
-      const { command } = await import(file);
+    try {
+      findFiles(path.resolve(__dirname, dir), (file: string) => file.endsWith(".ts")).forEach(async (file: string) => {
+        if (file.split(path.sep).includes("dev") && env.NODE_ENV !== "development") return;
+        const { command } = await import(file);
 
-      this.application?.commands.create(command);
-      this.commands.set(command.name, command);
-    });
+        this.application?.commands.create(command);
+        this.commands.set(command.name, command);
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
