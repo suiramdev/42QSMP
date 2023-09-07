@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../dist/sqlite.db"
+}
+
+// Each guild has a setup for authentication
+// this setup contains the role that will be given to the user
+// and the list of users that are allowed to authenticate.
+model AuthSetup {
+  guildId String @id
+  roleId  String
+  auths   Auth[]
+}
+
+// Each user has a code that they can use to authenticate themselves
+// this code is generated whem the user clicks the "authenticate" button
+// and is deleted when the user authenticates successfully.
+model Auth {
+  code             String    @id @default(uuid())
+  discordId        String
+  setup            AuthSetup @relation(fields: [authSetupGuildId], references: [guildId])
+  authSetupGuildId String
+}
+
+// The whitelist contains the list of users that are allowed to join the server.
+// It is mainly used to prevent users from whitelisting multiple accounts.
+model Whitelist {
+  fortyTwoId        String @id
+  minecraftUsername String @unique
+}
