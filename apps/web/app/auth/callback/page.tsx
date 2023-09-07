@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../..//api/auth/[...nextauth]/route";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
 import prisma from "@database/lib/client";
-import { redirect } from "next/navigation";
+import env from "../../../env";
 import { Card, CardDescription, CardHeader, CardTitle } from "@ui/components/ui/card";
 
 interface PageProps {
@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
       {
         method: "PUT",
         headers: {
-          Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
+          Authorization: `Bot ${env.DISCORD_TOKEN}`,
         },
       },
     );

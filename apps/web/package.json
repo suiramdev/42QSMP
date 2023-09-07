@@ -15,7 +15,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.46.1",
     "ui": "workspace:*",
-    "zod": "^3.22.2"
+    "zod": "^3.22.2",
+    "znv": "^0.3.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.12",

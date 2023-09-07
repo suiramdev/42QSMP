@@ -84,6 +84,9 @@ importers:
       ui:
         specifier: workspace:*
         version: link:../../packages/ui
+      znv:
+        specifier: ^0.3.2
+        version: 0.3.2(zod@3.22.2)
       zod:
         specifier: ^3.22.2
         version: 3.22.2
