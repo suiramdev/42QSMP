@@ -1,17 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "**/.env.*local"
-  ],
+  "globalDependencies": ["**/.env"],
+  "globalEnv": ["FORTY_TWO_CLIENT_ID", "FORTY_TWO_CLIENT_SECRET", "DISCORD_TOKEN", "NEXTAUTH_SECRET"],
   "pipeline": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
     "dev": {
