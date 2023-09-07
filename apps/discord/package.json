@@ -1,7 +1,8 @@
 {
   "name": "discord",
   "scripts": {
-    "dev": "ts-node ./index.ts"
+    "dev": "ts-node ./index.ts",
+    "start": "ts-node ./index.ts"
   },
   "dependencies": {
     "discord.js": "^14.13.0",
