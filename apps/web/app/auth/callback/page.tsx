@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
-import prisma from "@database/lib/client";
+import prisma, { Auth, AuthSetup } from "@database/lib/client";
 import env from "../../../env";
 import { Card, CardDescription, CardHeader, CardTitle } from "@ui/components/ui/card";
 
@@ -15,16 +15,19 @@ export default async function Page({ searchParams }: PageProps) {
   const { code, minecraftUsername } = searchParams;
   if (!minecraftUsername) throw new Error("The minecraftUsername parameter is missing");
 
-  const auth = code && await prisma.auth.findUnique({
-    where: {
-      code: code as string,
-    },
-    include: {
-      setup: true,
-    },
-  });
+  let auth: (Auth & { setup: AuthSetup }) | null = null;
+  if (code) {
+    // Add the discord role to the user
+    auth = await prisma.auth.findUnique({
+      where: {
+        code: code as string,
+      },
+      include: {
+        setup: true,
+      },
+    });
+    if (!auth) throw new Error("The authentication code is invalid or has expired");
 
-  if (auth) {
     await fetch(
       `https://discord.com/api/v10/guilds/${auth.setup.guildId}/members/${auth.discordId}/roles/${auth.setup.roleId}`,
       {
@@ -42,6 +45,7 @@ export default async function Page({ searchParams }: PageProps) {
     });
   }
 
+  // Add the minecraft username to the whitelist
   await prisma.whitelist.upsert({
     where: {
       fortyTwoId: session.user.id,

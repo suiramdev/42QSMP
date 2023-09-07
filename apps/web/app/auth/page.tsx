@@ -1,4 +1,4 @@
-import prisma from "@database/lib/client";
+import prisma, { Auth } from "@database/lib/client";
 import { AuthForm } from "./components/form";
 
 export default async function Page({
@@ -8,11 +8,15 @@ export default async function Page({
 }) {
   const { code } = searchParams;
 
-  const auth = code && await prisma.auth.findUnique({
-    where: {
-      code: code as string,
-    },
-  });
+  let auth: Auth | null = null;
+  if (code) {
+    auth = await prisma.auth.findUnique({
+      where: {
+        code: code as string,
+      },
+    });
+    if (!auth) throw new Error("The authentication code is invalid or has expired");
+  }
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
