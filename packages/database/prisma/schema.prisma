@@ -25,6 +25,8 @@ model AuthSetup {
 model Auth {
   code             String    @id @default(uuid())
   discordId        String
+  avatar           String?
+  username         String
   setup            AuthSetup @relation(fields: [authSetupGuildId], references: [guildId])
   authSetupGuildId String
 }

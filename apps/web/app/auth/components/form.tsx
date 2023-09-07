@@ -18,14 +18,10 @@ const formSchema = z.object({
 });
 
 interface AuthFormProps {
-  auth: Auth;
-  discordUser: {
-    username: string;
-    avatar: string;
-  };
+  auth?: Auth;
 }
 
-export function AuthForm({ auth, discordUser }: AuthFormProps) {
+export function AuthForm({ auth }: AuthFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,8 +30,13 @@ export function AuthForm({ auth, discordUser }: AuthFormProps) {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    const params = new URLSearchParams({
+      minecraftUsername: data.username,
+    });
+    if (auth) params.append("code", auth.code);
+
     await signIn("42-school", {
-      callbackUrl: `/auth/callback?code=${auth.code}&minecraftUsername=${data.username}`,
+      callbackUrl: `/auth/callback?${params.toString()}`,
     });
   };
 
@@ -45,26 +46,32 @@ export function AuthForm({ auth, discordUser }: AuthFormProps) {
         <Card className="w-[350px]">
           <CardHeader>
             <CardTitle>Authentication</CardTitle>
-            <CardDescription>Log in to the Discord server and the Minecraft server.</CardDescription>
+            <CardDescription>
+              {auth ? "Log in to the Discord server and the Minecraft server." : "Log in to the minecraft server."}
+            </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
-            <div className=" flex items-center space-x-4 rounded-md border p-4">
-              <Avatar>
-                <AvatarImage src={`https://cdn.discordapp.com/avatars/${auth.discordId}/${discordUser.avatar}.png`} />
-                <AvatarFallback>{discordUser.username.substring(0, 2)}</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col">
-                <span className="text-xs text-muted-foreground">Discord</span>
-                <span>{discordUser.username}</span>
+            {auth && (
+              <div className=" flex items-center space-x-4 rounded-md border p-4">
+                <Avatar>
+                  {auth.avatar && (
+                    <AvatarImage src={`https://cdn.discordapp.com/avatars/${auth.discordId}/${auth.avatar}.png`} />
+                  )}
+                  <AvatarFallback>{auth.username.substring(0, 2)}</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <span className="text-xs text-muted-foreground">Discord</span>
+                  <span>{auth.username}</span>
+                </div>
               </div>
-            </div>
+            )}
             <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
                 <FormItem>
                   <Label>Minecraft username</Label>
-                  <Input id="username" placeholder={discordUser.username} {...field} />
+                  <Input id="username" {...field} />
                   <FormMessage />
                 </FormItem>
               )}

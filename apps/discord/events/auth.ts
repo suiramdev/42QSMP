@@ -10,6 +10,8 @@ export const event: Event = {
     const auth = await prisma.auth.create({
       data: {
         discordId: interaction.user.id,
+        avatar: interaction.user.avatar,
+        username: interaction.user.username,
         setup: {
           connect: {
             guildId: interaction.guildId!,
