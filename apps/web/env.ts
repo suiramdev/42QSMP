@@ -6,7 +6,7 @@ const env = parseEnv(process.env, {
   FORTY_TWO_CLIENT_ID: z.string(),
   FORTY_TWO_CLIENT_SECRET: z.string(),
   DISCORD_TOKEN: z.string(),
-  NEXTAUTH_SECRET: z.string()
+  NEXTAUTH_SECRET: z.string(),
 });
 
 export default env;

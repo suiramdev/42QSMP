@@ -1,6 +1,7 @@
 import { Event } from "../types";
 import { Events, BaseInteraction, ComponentType, ButtonStyle } from "discord.js";
 import prisma from "@database/lib/client";
+import env from "../env"
 
 export const event: Event = {
   name: Events.InteractionCreate,
@@ -34,7 +35,7 @@ export const event: Event = {
               type: ComponentType.Button,
               label: "Login",
               style: ButtonStyle.Link,
-              url: `http://localhost:3000/auth?code=${auth.code}`,
+              url: `${env.SITE_URL}/auth?code=${auth.code}`,
             },
           ],
         },

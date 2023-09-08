@@ -23,6 +23,7 @@
     FORTY_TWO_CLIENT_SECRET
     DISCORD_TOKEN
     NEXTAUTH_SECRET
+    SITE_URL
     ```
 
 2. Run the following command to start the Docker containers:
@@ -46,6 +47,7 @@
 
     ```dotenv
     DISCORD_TOKEN
+    SITE_URL
     ```
 
 3. Install project dependencies by running the following command in the project root directory:
