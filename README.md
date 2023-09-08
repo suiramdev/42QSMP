@@ -1,109 +1,84 @@
-# Turborepo starter with shadcn/ui#
+# 42QSMP
 
-![Static Badge](https://img.shields.io/badge/shadcn%2Fui-latest-blue?link=https%3A%2F%2Fgithub.com%2Fshadcn%2Fui)
+**42QSMP** is a versatile mono repository project that uses **Turborepo** to manage a bot and a web application to whitelist users on both Discord and a Minecraft server using their student login. Originally designed to support the student-run Minecraft survival multiplayer server at School 42, this project simplifies user access management for a seamless gaming experience.
 
-This is Turborepo starter with shadcn/ui pre-configured.
+## Table of Contents
 
-> **Note**
-> This example uses `pnpm` as package manager.
+- [Introduction](#42qsmp---minecraft-server-whitelist-manager)
+- [Setup](#setup)
+  - [Using Docker](#using-docker)
+  - [Without Docker](#without-docker)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-[npm version](https://github.com/dan5py/turborepo-shadcn-ui/tree/npm)
+## Setup
 
-## Using this example
+### Using Docker
 
-Clone the repository:
+1. Create a `.env` file in the project's root directory and add the following required environment variables:
 
-```sh
-git clone https://github.com/dan5py/turborepo-shadcn-ui.git
-```
+    ```dotenv
+    FORTY_TWO_CLIENT_ID
+    FORTY_TWO_CLIENT_SECRET
+    DISCORD_TOKEN
+    NEXTAUTH_SECRET
+    ```
 
-Install dependencies:
+2. Run the following command to start the Docker containers:
 
-```sh
-cd turborepo-shadcn-ui
-pnpm install
-```
+    ```sh
+    docker compose up (-d)
+    ```
 
-### Add ui components
+### Without Docker
 
-Use the pre-made script:
+1. For the web application, create a `.env` file in the `/apps/web` directory and include the following environment variables:
 
-```sh
-pnpm ui:add <component-name>
-```
+    ```dotenv
+    FORTY_TWO_CLIENT_ID
+    FORTY_TWO_CLIENT_SECRET
+    DISCORD_TOKEN
+    NEXTAUTH_SECRET
+    ```
 
-> This works just like the add command in the `shadcn/ui` CLI.
+2. For the Discord bot, create a `.env` file in the `/apps/discord` directory and include the following environment variable:
 
-## What's inside?
+    ```dotenv
+    DISCORD_TOKEN
+    ```
 
-This Turborepo includes the following packages/apps:
+3. Install project dependencies by running the following command in the project root directory:
 
-### Apps and Packages
+    ```sh
+    pnpm install (--prod)
+    ```
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications (🚀 powered by **shadcn/ui**)
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+4. Build and start the project with one of the following commands:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+    - Production mode:
 
-### Utilities
+        ```sh
+        pnpm build
+        pnpm start
+        ```
 
-This Turborepo has some additional tools already setup for you:
+    - Development mode:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+        ```sh
+        pnpm dev
+        ```
 
-### Build
+## Usage
 
-To build all apps and packages, run the following command:
+Once the setup is complete, the **42QSMP** project will manage whitelisting on the Discord and Minecraft servers according to your configuration. You can customize the behavior and features to suit your specific needs.
 
-```sh
-cd turborepo-shadcn-ui
-pnpm build
-```
+Users can whitelist themselves
 
-### Develop
+## Contributing
 
-To develop all apps and packages, run the following command:
+Contributions to the **42QSMP** project are welcome! We don't have any specific guidelines, but please keep your code clean according to our styling preferences.
 
-```sh
-cd turborepo-shadcn-ui
-pnpm dev
-```
+## License
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd turborepo-shadcn-ui
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```sh
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
-
-Learn more about shadcn/ui:
-
-- [Documentation](https://ui.shadcn.com/docs)
+This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute it as needed.
