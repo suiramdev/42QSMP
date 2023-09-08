@@ -58,6 +58,11 @@
 
 4. Build and start the project with one of the following commands:
 
+    ```sh
+    pnpm db:push
+    pnpm db:generate
+    ```
+
     - Production mode:
 
         ```sh
