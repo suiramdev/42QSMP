@@ -14,17 +14,22 @@
 
 ## Setup
 
-### Using Docker
-
 1. Create a `.env` file in the project's root directory and add the following required environment variables:
 
-    ```dotenv
-    FORTY_TWO_CLIENT_ID
-    FORTY_TWO_CLIENT_SECRET
-    DISCORD_TOKEN
-    NEXTAUTH_SECRET
-    SITE_URL
-    ```
+| Environment Variable    | Description                                        | Default Value            |
+|-------------------------|----------------------------------------------------|--------------------------|
+| FORTY_TWO_CLIENT_ID     | 42's application client ID.                        |                          |
+| FORTY_TWO_CLIENT_SECRET | 42's application client secret.                    |                          |
+| DISCORD_TOKEN           | Token for your Discord application.                |                          |
+| NEXTAUTH_SECRET         | Secret key used for NextAuth.js authentication.    |                          |
+| SITE_URL                | The URL of your website.                           | http://localhost:3000    |
+| RCON_HOST               | Hostname or IP address for RCON.                   | localhost                |
+| RCON_PORT               | Port number for RCON.                              | 25575                    |
+| RCON_PASSWORD           | Password for RCON authentication.                  |                          |
+
+Please note that some of these variables may not have default values, and you should set them with appropriate values for your specific application.
+
+### Using Docker
 
 2. Run the following command to start the Docker containers:
 
@@ -34,29 +39,13 @@
 
 ### Without Docker
 
-1. For the web application, create a `.env` file in the `/apps/web` directory and include the following environment variables:
-
-    ```dotenv
-    FORTY_TWO_CLIENT_ID
-    FORTY_TWO_CLIENT_SECRET
-    DISCORD_TOKEN
-    NEXTAUTH_SECRET
-    ```
-
-2. For the Discord bot, create a `.env` file in the `/apps/discord` directory and include the following environment variable:
-
-    ```dotenv
-    DISCORD_TOKEN
-    SITE_URL
-    ```
-
-3. Install project dependencies by running the following command in the project root directory:
+2. Install project dependencies by running the following command in the project root directory:
 
     ```sh
     pnpm install (--prod)
     ```
 
-4. Build and start the project with one of the following commands:
+3. Build and start the project with one of the following commands:
 
     ```sh
     pnpm db:push
