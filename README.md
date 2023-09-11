@@ -67,9 +67,8 @@ Please note that some of these variables may not have default values, and you sh
 
 ## Usage
 
-Once the setup is complete, the **42QSMP** project will manage whitelisting on the Discord and Minecraft servers according to your configuration. You can customize the behavior and features to suit your specific needs.
-
-Users can whitelist themselves
+A `/setup auth` command is available via the bot, run it in the channel where you want to set up the authentication system and specify the role to be given to the authorised users.
+Alternatively, you can redirect your users to the `/auth` page of the website, where they can whitelist themselves with 42.
 
 ## Contributing
 
