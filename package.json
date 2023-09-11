@@ -5,7 +5,7 @@
   "scripts": {
     "build": "turbo run build",
     "start": "turbo run start",
-    "dev": "turbo run dev",
+    "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
     "db:generate": "turbo run db:generate",
     "db:push": "turbo run db:push",
@@ -16,6 +16,7 @@
     "turbo": "latest"
   },
   "devDependencies": {
+    "dotenv-cli": "^7.3.0",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^2.5.1"

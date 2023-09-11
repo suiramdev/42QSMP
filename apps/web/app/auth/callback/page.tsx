@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import prisma, { Auth, AuthSetup } from "@database/lib/client";
 import env from "../../../env";
+import rcon from "@rcon/lib/client";
 import { Card, CardDescription, CardHeader, CardTitle } from "@ui/components/ui/card";
 
 interface PageProps {
@@ -58,6 +59,10 @@ export default async function Page({ searchParams }: PageProps) {
       minecraftUsername: minecraftUsername as string,
     },
   });
+
+  await rcon.connect();
+  await rcon.send(`whitelist add ${minecraftUsername}`);
+  await rcon.end();
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
