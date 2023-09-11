@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "build": "dotenv -- turbo run build",
     "start": "turbo run start",
     "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "@turbo/gen": "^1.9.7",
-    "turbo": "latest"
+    "turbo": "latest",
+    "dotenv-cli": "^7.3.0"
   },
   "devDependencies": {
-    "dotenv-cli": "^7.3.0",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^2.5.1"

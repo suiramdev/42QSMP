@@ -11,13 +11,13 @@ importers:
       '@turbo/gen':
         specifier: ^1.9.7
         version: 1.9.7(@types/node@20.5.6)(typescript@4.9.5)
+      dotenv-cli:
+        specifier: ^7.3.0
+        version: 7.3.0
       turbo:
         specifier: latest
         version: 1.10.13
     devDependencies:
-      dotenv-cli:
-        specifier: ^7.3.0
-        version: 7.3.0
       eslint:
         specifier: ^7.32.0
         version: 7.32.0
@@ -159,9 +159,6 @@ importers:
 
   packages/rcon:
     dependencies:
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
       rcon-client:
         specifier: ^4.2.3
         version: 4.2.3
@@ -1584,16 +1581,17 @@ packages:
       dotenv: 16.3.1
       dotenv-expand: 10.0.0
       minimist: 1.2.8
-    dev: true
+    dev: false
 
   /dotenv-expand@10.0.0:
     resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
     engines: {node: '>=12'}
-    dev: true
+    dev: false
 
   /dotenv@16.3.1:
     resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
+    dev: false
 
   /electron-to-chromium@1.4.431:
     resolution: {integrity: sha512-m232JTVmCawA2vG+1azVxhKZ9Sv1Q//xxNv5PkP5rWxGgQE8c3CiZFrh8Xnp+d1NmNxlu3QQrGIfdeW5TtXX5w==}
@@ -2917,6 +2915,7 @@ packages:
 
   /minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
+    dev: false
 
   /mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
