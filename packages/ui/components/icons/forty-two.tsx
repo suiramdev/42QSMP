@@ -3,9 +3,10 @@ import * as React from "react";
 interface FortyTwoIconProps extends React.SVGProps<SVGSVGElement> {
   width?: number;
   height?: number;
+  className?: string;
 }
 
-export function FortyTwoIcon({ width = 24, height = 24, ...props }: FortyTwoIconProps) {
+export function FortyTwoIcon({ width = 24, height = 24, className, ...props }: FortyTwoIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +17,7 @@ export function FortyTwoIcon({ width = 24, height = 24, ...props }: FortyTwoIcon
       xmlSpace="preserve"
       width={width}
       height={height}
+      className={className}
       {...props}
     >
       <path d="M32 412.6L362.1 412.6 362.1 578 526.8 578 526.8 279.1 197.3 279.1 526.8 -51.1 362.1 -51.1 32 279.1z"></path>
