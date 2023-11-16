@@ -46,7 +46,15 @@ export default async function Page({ searchParams }: PageProps) {
     });
   }
 
-  // Add the minecraft username to the whitelist
+  const existingWhitelist = await prisma.whitelist.findUnique({
+    where: {
+      fortyTwoId: session.user.id,
+    },
+  });
+  await rcon.connect();
+
+  if (existingWhitelist) await rcon.send(`whitelist remove ${existingWhitelist.minecraftUsername}`);
+
   await prisma.whitelist.upsert({
     where: {
       fortyTwoId: session.user.id,
@@ -60,7 +68,6 @@ export default async function Page({ searchParams }: PageProps) {
     },
   });
 
-  await rcon.connect();
   await rcon.send(`whitelist add ${minecraftUsername}`);
   await rcon.end();
 
