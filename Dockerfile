@@ -7,8 +7,8 @@ WORKDIR /app
 COPY . .
 RUN pnpm install --prod
 
-RUN pnpm run db:push
 RUN pnpm run db:generate
 RUN pnpm run build
 
-CMD pnpm run start
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
